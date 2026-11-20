@@ -1,0 +1,23 @@
+𝐓𝐘𝐍𝐄𝐗 𝐕𝐏𝐒 𝐒𝐄𝐑𝐕𝐄𝐑 — 𝐇𝐎𝐒𝐓𝐈𝐍𝐆 𝐁𝐎𝐓 𝐆𝐔𝐈𝐃𝐄
+
+১) config.py খুলে BOT_TOKEN-এর জায়গায় BotFather থেকে তৈরি করা নতুন Main Bot Token বসাও।
+২) OWNER_ID আগের মতো 8017553129 রাখা হয়েছে।
+৩) BOT_USERNAME = 'TynexVPSBot' — BotFather-এ যে username সত্যিই সেট করেছ, সেটির সঙ্গে মিলিয়ে নিও।
+৪) এই ZIP তোমার আগের Hosting Bot-এর Upload Project অপশন দিয়ে আপলোড করবে। এই কাজের জন্য Render ব্যবহার করতে হবে না।
+৫) Hosting Bot যেন requirements.txt-এর প্যাকেজ ইনস্টল করে main.py চালায়, সেটি নিশ্চিত করো।
+
+ADMIN
+- Owner-এর মেইন মেনুতে 𝐀𝐝𝐦𝐢𝐧 𝐏𝐚𝐧𝐞𝐥 বাটন থাকবে।
+- Owner চাইলে /addadmin TELEGRAM_ID এবং /deladmin TELEGRAM_ID দিয়ে Admin যোগ/বাদ দিতে পারবে।
+- Admin contact: @MrTripleR_YT
+
+গুরুত্বপূর্ণ:
+- আগের Bot Token আগের শেয়ার করা ফাইলে প্রকাশিত হয়েছিল। BotFather থেকে সেটি revoke করে নতুন Token ব্যবহার করো।
+- MongoDB সংযোগ না থাকলে SQLite fallback হবে; Hosting-এর অস্থায়ী storage হলে SQLite data হারাতে পারে।
+- আপলোড করা child bot একই hosting account-এ process হিসেবে চলে; এটি আলাদা security sandbox নয়। শুধু বিশ্বাসযোগ্য project চালাবে।
+- Python syntax compilation ও ZIP integrity check করা হয়েছে। বৈধ নতুন Token দিয়ে live Telegram test এখনো করা হয়নি।
+
+
+PAYMENT UPDATE: Checkout options are Promo Code, Wallet Coins, and Telegram Stars (XTR). Referral reward is 10 wallet coins per successful referral. Telegram Stars rate is configured by STAR_PER_BDT in config.py. External bKash/Nagad/Rocket/manual payment methods are disabled in the current checkout.
+
+UPLOAD RETENTION UPDATE: Uploaded source files are archived under upload_bots/_user_uploads/<user_id>/ and remain available in Admin Panel -> User Files. Re-uploading a ZIP with the same filename creates a separate project folder and never deletes the previous project. Uploads are auto-approved after the static security scan; they are not auto-started.

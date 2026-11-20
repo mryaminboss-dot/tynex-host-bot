@@ -1,0 +1,20 @@
+services:
+  - type: worker
+    name: naruto-hosting-bot
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: DATA_DIR
+        value: /var/data
+      - key: MAIN_BOT_AUTO_RESTART_HOURS
+        value: "0"
+      - key: FREE_BOT_MAX_HOURS
+        value: "0"
+    disk:
+      name: naruto-hosting-data
+      mountPath: /var/data
+      sizeGB: 10

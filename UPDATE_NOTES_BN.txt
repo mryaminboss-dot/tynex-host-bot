@@ -1,0 +1,23 @@
+TYNEX VPS SERVER - REVIEWED PATCH NOTES
+
+Applied in this build:
+1. Removed the previously hard-coded Telegram bot token. Configure BOT_TOKEN as a hosting environment variable.
+2. Branding now displays the brand name without appending the version; version is a separate 'Version - 1.4.3T' label where shown.
+3. Support Center now has a direct Contact Support URL to @MrTripleR_YT and a separate optional Create Support Ticket action.
+4. Cleanup Storage no longer deletes persistent user upload/deployed project folders. The legacy cleanup-user-files operation is a safe no-op.
+5. Force-join manager now offers separate Add Channel and Add Group actions. Public @usernames and numeric chat IDs can be stored. Telegram bots cannot enumerate every channel/group where an administrator is present; admins must provide the public username or chat ID and add the bot as an administrator.
+
+Important: The requested multi-step Promo Code creator, Redeem Code credit system, paginated user-picker for every user-ID action, and a full owner-settings redesign are NOT yet implemented in this patch. Existing ticket, system stats, and backup handlers were retained; live Telegram/API behaviour still requires deployment testing.
+
+SECURITY: A bot token was embedded in the uploaded config.py. It has been removed from this archive, but the exposed token must be revoked in @BotFather and replaced via the BOT_TOKEN environment variable before deployment.
+
+LATEST UPDATE — REDEEM CODES & FORCE JOIN
+
+1. Removed the user-menu Running Bots shortcut and replaced it with Redeem Code.
+2. Added Admin Panel > Redeem Codes. Admin creates a unique code, sets usage limit, then sets Coins per redemption. Fixed presets and custom values are available.
+3. Users can enter a redeem code to credit wallet Coins. Usage limits are enforced atomically in SQLite and MongoDB.
+4. Promo Code creation is now guided: code name -> usage limit -> discount percentage. Percentage is limited to 1–100; a 150% discount is not valid.
+5. Force Join accepts public @username or public t.me/<username> links, resolves the chat title through Telegram, and displays the resolved channel/group title on the join button.
+6. Private invite links (t.me/+...) cannot be resolved to a chat ID through the Telegram Bot API alone. Add the bot to the private group/channel first; then provide its chat ID if it has no public username.
+
+Validation: Python compileall and ZIP integrity checks passed. Live Telegram operations were not tested.

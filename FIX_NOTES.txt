@@ -1,0 +1,48 @@
+TYNEX VPS SERVER — CHANGE NOTES
+
+- Added the missing core, handlers, and utils Python packages required by main.py imports.
+- Added owner/admin state persistence in data/admins.json.
+- Added centralized message and button English styling.
+- Added an Admin Panel button to the main menu for configured admins only.
+- Added admin keyboard entries for user management, payments, subscriptions, wallet balance, broadcast, channels, tickets, promo codes, system status, backups, logs, cleanup, and bot controls.
+- Updated project branding to TYNEX VPS SERVER and admin contact to @MrTripleR_YT.
+- Preserved OWNER_ID 8017553129 and existing database naming/path to avoid silently switching existing local data.
+- Removed the exposed old bot token from the archive; paste a newly generated token into config.py.
+- Kept existing requirements.txt dependencies.
+
+Validation:
+- Python syntax compilation passed.
+- Main-module imports were checked against the newly supplied package functions.
+- SQLite database initialization and stats query passed.
+- ZIP integrity is checked before delivery.
+- A live Telegram bot launch was not performed because a valid new token and the user's hosting runtime are required.
+
+Security note:
+Uploaded project code executes as a child process under the same hosting account. It is not isolated in a container or VM.
+
+SUBSCRIPTION UPDATE
+- Added 3-day, 7-day, 15-day, 30-day, 90-day, 180-day, 365-day and lifetime plans.
+- Plan prices and limits are configured in config.py under PLAN_LIMITS.
+- User plan selection opens a direct Telegram contact link to @MrTripleR_YT.
+- Admin can still manually add/remove subscriptions from Admin Panel; add-subscription accepts a user ID, plan and duration (0 = lifetime).
+- Pending payment approval/rejection workflow remains available where payment submissions are enabled.
+- Prices are suggested defaults; review/change them in config.py before publishing.
+
+
+PAYMENT UPDATE: Checkout options are Promo Code, Wallet Coins, and Telegram Stars (XTR). Referral reward is 10 wallet coins per successful referral. Telegram Stars rate is configured by STAR_PER_BDT in config.py. External bKash/Nagad/Rocket/manual payment methods are disabled in the current checkout.
+
+
+UPLOAD SCANNER & ADMIN CONTROLS
+- Added static-only upload scanner; it never runs code during inspection.
+- Added persistent upload history for approved and rejected uploads.
+- Added Admin Panel -> User Files with upload order, user ID, status, scan reason, and download.
+- Added Admin Panel -> Running User Files with project Start/Stop, log viewing, and download controls.
+- No second bot is required.
+- Coin insufficiency is displayed as a normal message with plan cost, current balance, and shortfall.
+
+LIMITATION: Heuristic static scanning cannot prove that arbitrary code is safe. Approved user code is still executed with the hosting process account's permissions. Production use should isolate each project in a container/VM with restricted filesystem, network, CPU, memory, and process permissions.
+
+UPLOAD RETENTION UPDATE: Uploaded source files are archived under upload_bots/_user_uploads/<user_id>/ and remain available in Admin Panel -> User Files. Re-uploading a ZIP with the same filename creates a separate project folder and never deletes the previous project. Uploads are auto-approved after the static security scan; they are not auto-started.
+
+RUNNER UPDATE: Python projects use a project-local .venv and install requirements.txt there before launch. Node projects run npm install when package.json exists. Per-project logs are stored at logs/bot_<project_id>.log and are shown in View Logs. Dependency installation requires network access and can fail; inspect logs for the exact package error.
+AUTO-START UPDATE: Approved .zip, .py and .js projects are automatically started after static scanning. Python requirements are installed into a project-local .venv; Node package.json dependencies are installed with npm. A running project refreshes to a Stop button instead of showing a misleading Already running popup.
